@@ -6,7 +6,7 @@ import java.net.*;
 class Server {
 
     public static void main(String args[]) {
-        String data = "Toobie ornaught toobie";
+
         try {
             System.out.println("Iniciando servidor.");
             // O ServerSocket associa o serviço a uma porta lógica. Ele assumirá o IP da interface de rede padrão
@@ -18,6 +18,8 @@ class Server {
             Socket skt = srvr.accept();
             
             System.out.print("Conexão estabelecida!\n");
+            
+            //<editor-fold defaultstate="collapsed" desc="Leitura do Socket">
             // E/S de dados associados a conexão
             InputStream input = skt.getInputStream();
             OutputStream output = skt.getOutputStream();
@@ -28,14 +30,15 @@ class Server {
             // OutputStream oferece uma interface para Gravação de Bytes
             // PrintStream oferece uma interface para Gravação de Strings
             PrintStream out = new PrintStream(output);
+            //</editor-fold>
             
             while (true) {                
-                String msg = in.readLine();// Lê a mensagem enviada pelo cliente
-                System.out.println("Mensagem do cliente ["+skt.getInetAddress().getHostName()+"]: "+ msg);// Imprime a mensagem
-                if ("FIM".equals(msg)) {
+                String mensagemStr = in.readLine();// Lê a mensagem enviada pelo cliente
+                System.out.println("Mensagem do cliente ["+skt.getInetAddress().getHostName()+"]: "+ mensagemStr);// Imprime a mensagem
+                if ("FIM".equals(mensagemStr)) {
                     break;// encerra o laço
                 } else {
-                    out.println(msg);//senão ecoa a mensagem para o cliente
+                    out.println(mensagemStr);//senão ecoa a mensagem para o cliente
                 }//fim if else
             }//fim while
             
@@ -49,5 +52,5 @@ class Server {
             System.out.print("Ops! Não deu certo!\n");
             System.err.println(e);
         }
-    }
-}
+    }//fim metodo main
+}//fim classe Server
