@@ -51,12 +51,12 @@ class Client {
                 System.out.print("Digite a mensagem: ");
                 mensagemStr = scanner.nextLine();// Lê mensagem do teclado
                 
-                String msgZero = mensagemStr;// Copia da mensagem para a divisão
+                String msgZero = mensagemStr;// A Copia da mensagem para a divisão
                 for (int i = 0; i < grauGerador; i++) {// Adiciona os zeros extras
                     msgZero = msgZero.concat("0");
                 }
                 
-                divRestoStr = Operacao.divResto(msgZero);// Faz a divisão e retorna o divResto
+                divRestoStr = Operacao.divResto(msgZero, geradorStr);// Faz a divisão e retorna o divResto
                 
                 mensagemRes = mensagemStr.concat(divRestoStr);
 
